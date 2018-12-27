@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 project(efi_os)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Add all features
 add_subdirectory(feature/core)
 add_subdirectory(feature/can)
+add_subdirectory(feature/gasoline)
 
 # Add MCUs
 add_subdirectory(mcu/stm32f4)
