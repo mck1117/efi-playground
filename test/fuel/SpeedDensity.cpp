@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <gasoline/SpeedDensity.h>
-#include <gasoline/GasolineInjectionController.h>
+#include <gasoline/GasolineFuelComputer.h>
 
 class SpeedDensityTest : public ::testing::Test
 {

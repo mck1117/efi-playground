@@ -1,9 +1,10 @@
-#include <gasoline/GasolineInjectionController.h>
+#include <gtest/gtest.h>
+#include <gasoline/GasolineFuelComputer.h>
 
 TEST(GasFuelComputer, testgas)
 {
 	GasolineInjectionConfiguration config{ 10.0f };
-	GasolineFuelingComputer gfc(config);
+	GasolineFuelComputer gfc(config);
 
 	AirflowEstimate airflow;
 	airflow.CylinderAirMass = 1_g;
@@ -35,7 +36,7 @@ public:
 TEST(GasFuelComputer, TestSinglePipelineStage)
 {
 	GasolineInjectionConfiguration config{ 10.0f };
-	GasolineFuelingComputer gfc(config);
+	GasolineFuelComputer gfc(config);
 
 	AirflowEstimate airflow;
 	airflow.CylinderAirMass = 1_g;
@@ -54,7 +55,7 @@ TEST(GasFuelComputer, TestSinglePipelineStage)
 TEST(GasFuelComputer, TestMultiPipelineStage)
 {
 	GasolineInjectionConfiguration config{ 10.0f };
-	GasolineFuelingComputer gfc(config);
+	GasolineFuelComputer gfc(config);
 
 	AirflowEstimate airflow;
 	airflow.CylinderAirMass = 1_g;

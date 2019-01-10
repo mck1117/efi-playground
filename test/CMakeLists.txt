@@ -7,4 +7,4 @@ target_sources(efi_os_tests PRIVATE
     fuel/SpeedDensity.cpp
 )
 
-target_link_libraries(efi_os_tests gtest_main core gasoline synchronous)
+target_link_libraries(efi_os_tests gtest_main core gasoline)

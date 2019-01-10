@@ -1,6 +1,6 @@
-#include <gasoline/GasolineInjectionController.h>
+#include <gasoline/GasolineFuelComputer.h>
 
-GasolineFuelResult GasolineFuelingComputer::ComputeFuel(AirflowEstimate airflow)
+GasolineFuelResult GasolineFuelComputer::ComputeFuel(AirflowEstimate airflow)
 {
 	GasolineFuelResult result;
 
@@ -9,11 +9,11 @@ GasolineFuelResult GasolineFuelingComputer::ComputeFuel(AirflowEstimate airflow)
 	// Compute 'base' fueling
 	result.TargetAfr = m_config.FuelStoichiometricMassRatio * result.TargetLambda;
 	QMass cylinderFuelMass = airflow.CylinderAirMass / result.TargetAfr;
-	result.BaseCylinderFuelMass = cylinderFuelMass;
+    result.BaseCylinderFuelMass = cylinderFuelMass;
 
-	// Everyone who wants to poke the fuel quantity can do so
-	// This is where IAT, CLT correction, accel enrichment, after start 
-	// correction, dfco, closed loop, etc happens
+	// Everyone who wants to poke the 'base' fuel quantity can do so
+	// This is where IAT, CLT correction, after start correction,
+    // dfco, closed loop, etc can happen
 	for (int i = 0; i < m_pipelineStageCount; i++)
 	{
 		cylinderFuelMass = m_pipeline[i]->AdjustFuel(cylinderFuelMass);

@@ -8,7 +8,7 @@ struct GasolineFuelResult
 {
 	// The mass of fuel that should be injected per cylinder
 	QMass BaseCylinderFuelMass;
-	QMass AdjustedCylinderFuelMass;
+    QMass AdjustedCylinderFuelMass;
 
 	Number TargetLambda;
 	Number TargetAfr;
@@ -24,7 +24,7 @@ struct FuelAdjustmentPipelineStage
 	virtual QMass AdjustFuel(QMass input) = 0;
 };
 
-class GasolineFuelingComputer final
+class GasolineFuelComputer final
 {
 private:
 	const GasolineInjectionConfiguration m_config;
@@ -33,7 +33,7 @@ private:
 	FuelAdjustmentPipelineStage* m_pipeline[6];
 
 public:
-	GasolineFuelingComputer(const GasolineInjectionConfiguration& config)
+	GasolineFuelComputer(const GasolineInjectionConfiguration& config)
 		: m_config(config)
 	{
 	}
