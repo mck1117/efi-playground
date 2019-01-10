@@ -5,14 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 # Add all features
 add_subdirectory(feature/core)
-add_subdirectory(feature/can)
 add_subdirectory(feature/gasoline)
-
-# Add MCUs
-add_subdirectory(mcu/stm32f4)
+add_subdirectory(feature/can)
 
 # Add configurations
-# add_subdirectory(configurations/frankenso)
+add_subdirectory(configurations/tester)
 
 # google test
 set(INSTALL_GMOCK OFF CACHE BOOL "" FORCE)
@@ -23,4 +20,3 @@ Include(googletest)
 
 # Unit tests
 add_subdirectory(test)
-

@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <gasoline/IAirflowEstimator.h>
@@ -16,17 +15,14 @@ private:
     const MassAirFlowConfiguration m_config;
 
     const SensorHolder<massrate_t> m_maf;
-    const SensorHolder<QFrequency> m_enginespeed;
-    const SensorHolder<QTemperature> m_iat;
 
 public:
-	MassAirFlow(const MassAirFlowConfiguration& config, const ISensor* maf, const ISensor* enginespeed, const ISensor* iat)
-		: m_config(config)
+	MassAirFlow(const AirflowEstimatorConfiguration& configCommon, const MassAirFlowConfiguration& config, const ISensor* maf, const ISensor* enginespeed, const ISensor* iat, const ISensor* clt)
+		: IAirflowEstimator(configCommon, iat, clt, enginespeed)
+		, m_config(config)
 		, m_maf(maf)
-		, m_enginespeed(enginespeed)
-		, m_iat(iat)
 	{
 	}
 
-	massrate_t GetMassFlowRate() override;
+	AirflowEstimate EstimateAirflow() override;
 };

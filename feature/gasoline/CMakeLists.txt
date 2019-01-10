@@ -5,6 +5,7 @@ target_include_directories(gasoline PUBLIC include)
 target_sources(gasoline PRIVATE
     src/SpeedDensity.cpp
     src/MassAirFlow.cpp
+    src/InjectionController.cpp
 )
 
 target_link_libraries(gasoline core)

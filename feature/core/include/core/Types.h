@@ -20,3 +20,8 @@ struct Table3Data
     TBin BinsY[TSizeY];
     TValue Values[TSizeX * TSizeY];
 };
+
+struct PhaseDurationScheduled
+{
+
+};

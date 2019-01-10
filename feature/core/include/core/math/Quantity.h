@@ -12,8 +12,8 @@ private:
 public:
     constexpr RQuantity() : value(0.0) {}
 	constexpr RQuantity(float val) : value(val) {}
-    constexpr RQuantity(double val) : value(static_cast<float>(val)) {}
-    constexpr RQuantity(long double val) : value(static_cast<float>(val)) {}
+    explicit constexpr RQuantity(double val) : value(static_cast<float>(val)) {}
+    explicit constexpr RQuantity(long double val) : value(static_cast<float>(val)) {}
 
     // The intrinsic operations for a quantity with a unit is addition and subtraction
     constexpr RQuantity const& operator+=(const RQuantity& rhs)
@@ -28,13 +28,13 @@ public:
     }
 
     // Returns the value of the quantity in multiples of the specified unit
-    constexpr double Convert(const RQuantity& rhs) const
+    constexpr float Convert(const RQuantity& rhs) const
     {
         return value / rhs.value;
     }
 
     // returns the raw value of the quantity (should not be used)
-    constexpr double getValue() const
+    constexpr float getValue() const
     {
         return value;
     }
@@ -63,6 +63,9 @@ QUANTITY_TYPE(1, 1, -2, 0, QForce);
 QUANTITY_TYPE(1, -1, -2, 0, QPressure);
 QUANTITY_TYPE(0, 0, 0, 1, QTemperature);
 QUANTITY_TYPE(1, 2, -2, -1, QGasConstant);
+
+QUANTITY_TYPE(1, -3, 0, 0, QDensity);
+QUANTITY_TYPE(0, 3, -1, 0, QVolumetricFlow);
 
 
 
@@ -195,7 +198,6 @@ constexpr QVolume inch3 = inch2*inch;
 constexpr QTime second(1.0);                        // SI base unit
 constexpr QTime minute = 60 * second;
 constexpr QTime hour = 60 * minute;
-constexpr QTime day = 24 * hour;
 
 constexpr QFrequency Hz(1.0);
 constexpr QFrequency rpm = Hz / 60;
@@ -205,11 +207,11 @@ constexpr QAcceleration G = 9.80665 *  metre / (second*second);
 
 constexpr QForce newton(1.0);
 constexpr QForce poundforce = pound*G;
-constexpr QForce kilopond = kg*G;
 
 constexpr QPressure Pascal(1.0);
 constexpr QPressure kpa = 1000 * Pascal;
 constexpr QPressure bar = 100000 * Pascal;
+constexpr QPressure atm = 101.325 * kpa;
 constexpr QPressure psi = pound*G / inch2;
 
 // Ideal gas constant
@@ -250,7 +252,6 @@ constexpr QSpeed operator"" _kmph(unsigned long long int x)
 constexpr QFrequency operator"" _Hz(long double x) { return QFrequency(x); };
 constexpr QFrequency operator"" _Hz(unsigned long long int x) 
                                    { return QFrequency(static_cast<long double>(x)); };
-
 constexpr QFrequency operator"" _Rpm(long double x) { return static_cast<double>(x)*rpm; };
 constexpr QFrequency operator"" _Rpm(unsigned long long int x)
                                    { return static_cast<double>(x)*rpm; };
@@ -259,11 +260,9 @@ constexpr QFrequency operator"" _Rpm(unsigned long long int x)
 constexpr QTime operator"" _s(long double x) { return QTime(x); };
 constexpr QTime operator"" _min(long double x) { return static_cast<double>(x)*minute; };
 constexpr QTime operator"" _h(long double x) { return static_cast<double>(x)*hour; };
-constexpr QTime operator"" _day(long double x) { return static_cast<double>(x)*day; };
 constexpr QTime operator"" _s(unsigned long long int x) { return QTime(static_cast<double>(x)); };
 constexpr QTime operator"" _min(unsigned long long int x) { return static_cast<double>(x)*minute; };
 constexpr QTime operator"" _h(unsigned long long int x) { return static_cast<double>(x)*hour; };
-constexpr QTime operator"" _day(unsigned long long int x) { return static_cast<double>(x)*day; };
 
 // literals for mass units
 constexpr QMass operator"" _kg(long double x) { return QMass(x); };
@@ -296,6 +295,8 @@ constexpr QPressure operator"" _kpa(long double x) { return static_cast<double>(
 constexpr QPressure operator"" _kpa(unsigned long long int x) { return static_cast<double>(x)*kpa; };
 constexpr QPressure operator"" _psi(long double x) { return static_cast<double>(x)*psi; };
 constexpr QPressure operator"" _psi(unsigned long long int x) { return static_cast<double>(x)*psi; };
+constexpr QPressure operator"" _atm(long double x) { return static_cast<double>(x)*atm; };
+constexpr QPressure operator"" _atm(unsigned long long int x) { return static_cast<double>(x)*atm; };
 
 // literals for temperature unit
 constexpr QTemperature operator"" _k(long double x) { return QTemperature(x); };

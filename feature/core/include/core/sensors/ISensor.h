@@ -36,11 +36,11 @@ public:
 		{
 			SensorResult<float> raw = m_sensor->Get();
 
-			return { raw.Valid, raw.Value };
+			return { raw.Valid, TValue(raw.Value) };
 		}
 		else
 		{
-			return { false, 0.0f };
+			return { false, TValue(0.0f) };
 		}
 	}
 
