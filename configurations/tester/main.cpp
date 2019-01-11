@@ -4,7 +4,7 @@
 #include <gasoline/SpeedDensity.h>
 
 
-void main(int argc, char** argv)
+int main(int argc, char** argv)
 {
     MockSensor clt;
     MockSensor iat;
