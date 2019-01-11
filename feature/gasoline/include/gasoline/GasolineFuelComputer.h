@@ -1,7 +1,7 @@
 #pragma once
 
 #include <core/Types.h>
-#include <gasoline\IAirflowEstimator.h>
+#include <gasoline/IAirflowEstimator.h>
 #include <core/math/Table.h>
 
 struct GasolineFuelResult
